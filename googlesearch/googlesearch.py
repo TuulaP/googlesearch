@@ -32,7 +32,7 @@ class GoogleSearch:
             start = i * GoogleSearch.RESULTS_PER_PAGE
             opener = urllib2.build_opener()
             opener.addheaders = GoogleSearch.DEFAULT_HEADERS
-            response = opener.open(GoogleSearch.SEARCH_URL + "?q="+ urllib2.quote(query) + ("" if start == 0 else ("&start=" + str(start))))
+            response = opener.open(GoogleSearch.SEARCH_URL + "?q="+ urllib2.quote(query.encode('utf-8')) + ("" if start == 0 else ("&start=" + str(start))))
             soup = BeautifulSoup(response.read(), "lxml")
             response.close()
             if total is None:
